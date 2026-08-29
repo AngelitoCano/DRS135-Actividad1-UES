@@ -1,94 +1,200 @@
 ﻿using Actividad1;
 
-CuentaBancaria? cuenta = null;
-bool salir = false;
+bool salirProgramaPrincipal = false;
 
-while (salir == false)
+while (!salirProgramaPrincipal)
 {
-    Console.WriteLine("\n==================================");
-    Console.WriteLine("        BANCO CAPITALSV           ");
+    Console.Clear();
     Console.WriteLine("==================================");
-    Console.WriteLine("1. Crear Cuenta Bancaria");
-    Console.WriteLine("2. Depositar Dinero");
-    Console.WriteLine("3. Retirar Dinero");
-    Console.WriteLine("4. Consultar Saldo");
-    Console.WriteLine("5. Salir");
+    Console.WriteLine("        ACTIVIDAD EVALUADA 1      ");
+    Console.WriteLine("         ANGEL CANO CA98033       ");
+    Console.WriteLine("        JOSUE ERAZO EG22009       ");
+    Console.WriteLine("==================================");
+    Console.WriteLine("1. EJERCICIO 1: Abstracción (CuentaBancaria)");
+    Console.WriteLine("2. EJERCICIO 2: Encapsulación (Empleado)");
+    Console.WriteLine("3. EJERCICIO 3: Herencia");
+    Console.WriteLine("4. EJERCICIO 4: Polimorfismo");
+    Console.WriteLine("5. EJERCICIO 5: Interfases");
+    Console.WriteLine("6. SALIR");
     Console.Write("Seleccione una opción: ");
 
-    string? opcion = Console.ReadLine();
+    string? opcionPrincipal = Console.ReadLine();
 
-    switch (opcion)
+    switch (opcionPrincipal)
     {
         case "1":
-            Console.Write("\nIngrese el monto de apertura de la cuenta: $");
-            if (decimal.TryParse(Console.ReadLine(), out decimal saldoInicial))
-            {
-                cuenta = new CuentaBancaria(saldoInicial);
-                Console.WriteLine("¡Cuenta creada exitosamente!");
-            }
-            else
-            {
-                Console.WriteLine("Error: Ingrese un valor numérico válido.");
-            }
+            EjecutarEjercicio1();
             break;
 
         case "2":
-            if (cuenta == null)
-            {
-                Console.WriteLine("Error: Primero debe crear una cuenta (Opción 1).");
-                break;
-            }
-            Console.Write("\nIngrese el monto a depositar: $");
-            if (decimal.TryParse(Console.ReadLine(), out decimal montoDeposito))
-            {
-                cuenta.Depositar(montoDeposito);
-            }
-            else
-            {
-                Console.WriteLine("Error: Ingrese un valor numérico válido.");
-            }
+            Console.WriteLine("\n[Ejercicio 2 en desarrollo por Josue]");
+            EjecutarEjercicio2();
             break;
 
         case "3":
-            if (cuenta == null)
-            {
-                Console.WriteLine("Error: Primero debe crear una cuenta (Opción 1).");
-                break;
-            }
-            Console.Write("\nIngrese el monto a retirar: $");
-            if (decimal.TryParse(Console.ReadLine(), out decimal montoRetiro))
-            {
-                cuenta.Retirar(montoRetiro);
-            }
-            else
-            {
-                Console.WriteLine("Error: Ingrese un valor numérico válido.");
-            }
+            Console.WriteLine("\n[Ejercicio 3 en desarrollo por Ángel]");
+            EjecutarEjercicio3();
             break;
 
         case "4":
-            if (cuenta == null)
-            {
-                Console.WriteLine("Error: Primero debe crear una cuenta (Opción 1).");
-                break;
-            }
-            Console.WriteLine($"\nSaldo actual en la cuenta: ${cuenta.ObtenerSaldo()}");
+            Console.WriteLine("\n[Ejercicio 4 en desarrollo por Josué]");
+            EjecutarEjercicio4();
             break;
 
         case "5":
-            salir = true;
-            Console.WriteLine("\nGracias por usar Banco CapitalSV. ¡Hasta luego!");
+            Console.WriteLine("\n[Ejercicio 5 en desarrollo por Ángel]");
+            EjecutarEjercicio5();
+            EsperarTecla();
+            break;
+
+        case "6":
+            salirProgramaPrincipal = true;
+            Console.WriteLine("\n¡Gracias por utilizar el sistema!");
             break;
 
         default:
-            Console.WriteLine("Opción no válida. Intente de nuevo.");
+            Console.WriteLine("\nOpción no válida. Intente de nuevo.");
+            EsperarTecla();
             break;
     }
+}
 
-    // Pausa para que el usuario pueda leer las respuestas antes de volver a mostrar el menú
-    if (!salir)
+// =======================================================
+// LÓGICA DE EJERCICIOS
+// =======================================================
+static void EjecutarEjercicio1()
+{
+    CuentaBancaria? cuenta = null;
+    bool salirSubMenu = false;
+
+    while (!salirSubMenu)
     {
-        Console.WriteLine("\nPresione ENTER para continuar...");
-        Console.ReadLine();
+        Console.Clear();
+        Console.WriteLine("==================================");
+        Console.WriteLine("        BANCO CAPITALSV           ");
+        Console.WriteLine("==================================");
+        Console.WriteLine("1. Crear Cuenta Bancaria");
+        Console.WriteLine("2. Depositar Dinero");
+        Console.WriteLine("3. Retirar Dinero");
+        Console.WriteLine("4. Consultar Saldo");
+        Console.WriteLine("5. Regresar al Menú Principal");
+        Console.Write("Seleccione una opción: ");
+
+        string? opcion = Console.ReadLine();
+
+        switch (opcion)
+        {
+            case "1":
+                Console.Write("\nIngrese el monto de apertura de la cuenta: $");
+                if (decimal.TryParse(Console.ReadLine(), out decimal saldoInicial))
+                {
+                    cuenta = new CuentaBancaria(saldoInicial);
+                    Console.WriteLine("¡Cuenta creada exitosamente!");
+                }
+                else
+                {
+                    Console.WriteLine("Error: Ingrese un valor numérico válido.");
+                }
+                break;
+
+            case "2":
+                if (cuenta == null)
+                {
+                    Console.WriteLine("Error: Primero debe crear una cuenta (Opción 1).");
+                    break;
+                }
+                Console.Write("\nIngrese el monto a depositar: $");
+                if (decimal.TryParse(Console.ReadLine(), out decimal montoDeposito))
+                {
+                    cuenta.Depositar(montoDeposito);
+                }
+                else
+                {
+                    Console.WriteLine("Error: Ingrese un valor numérico válido.");
+                }
+                break;
+
+            case "3":
+                if (cuenta == null)
+                {
+                    Console.WriteLine("Error: Primero debe crear una cuenta (Opción 1).");
+                    break;
+                }
+                Console.Write("\nIngrese el monto a retirar: $");
+                if (decimal.TryParse(Console.ReadLine(), out decimal montoRetiro))
+                {
+                    cuenta.Retirar(montoRetiro);
+                }
+                else
+                {
+                    Console.WriteLine("Error: Ingrese un valor numérico válido.");
+                }
+                break;
+
+            case "4":
+                if (cuenta == null)
+                {
+                    Console.WriteLine("Error: Primero debe crear una cuenta (Opción 1).");
+                    break;
+                }
+                Console.WriteLine($"\nSaldo actual en la cuenta: ${cuenta.ObtenerSaldo()}");
+                break;
+
+            case "5":
+                salirSubMenu = true;
+                continue;
+
+            default:
+                Console.WriteLine("Opción no válida. Intente de nuevo.");
+                break;
+        }
+
+        if (!salirSubMenu)
+        {
+            EsperarTecla();
+        }
     }
 }
+
+// =======================================================
+// LÓGICA DEL EJERCICIO 2
+// =======================================================
+static void EjecutarEjercicio2()
+{
+    Console.Clear();
+    Console.WriteLine("=== EJERCICIO 2: ENCAPSULACIÓN (EMPLEADO) ===");
+
+    EsperarTecla();
+}
+
+static void EjecutarEjercicio3()
+{
+    Console.Clear();
+    Console.WriteLine("=== EJERCICIO 3: HERENCIA ===");
+
+    EsperarTecla();
+}
+
+static void EjecutarEjercicio4()
+{
+    Console.Clear();
+    Console.WriteLine("=== EJERCICIO 4: POLIMORFISMO ===");
+
+    EsperarTecla();
+}
+
+static void EjecutarEjercicio5()
+{
+    Console.Clear();
+    Console.WriteLine("=== EJERCICIO 5: INTERFASES ===");
+
+    EsperarTecla();
+}
+
+// Método auxiliar para pausas
+static void EsperarTecla()
+{
+    Console.WriteLine("\nPresione ENTER para continuar...");
+    Console.ReadLine();
+}
+
