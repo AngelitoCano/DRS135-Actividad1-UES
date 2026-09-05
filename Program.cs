@@ -169,10 +169,77 @@ static void EjecutarEjercicio2()
 
 static void EjecutarEjercicio3()
 {
-    Console.Clear();
-    Console.WriteLine("=== EJERCICIO 3: HERENCIA ===");
+    Coche? miCoche = null;
+    bool salirSubMenu = false;
 
-    EsperarTecla();
+    while (!salirSubMenu)
+    {
+        Console.Clear();
+        Console.WriteLine("==================================");
+        Console.WriteLine("    EJERCICIO 3: HERENCIA (COCHE) ");
+        Console.WriteLine("==================================");
+        Console.WriteLine("1. Registrar Nuevo Coche");
+        Console.WriteLine("2. Arrancar Coche");
+        Console.WriteLine("3. Ver Detalles del Coche");
+        Console.WriteLine("4. Regresar al Menú Principal");
+        Console.Write("Seleccione una opción: ");
+
+        string? opcion = Console.ReadLine();
+
+        switch (opcion)
+        {
+            case "1":
+                Console.Write("\nIngrese la marca del coche: ");
+                string? marca = Console.ReadLine();
+
+                Console.Write("Ingrese el modelo del coche: ");
+                string? modelo = Console.ReadLine();
+
+                Console.Write("Ingrese el número de puertas: ");
+                if (int.TryParse(Console.ReadLine(), out int puertas) && puertas > 0)
+                {
+                    miCoche = new Coche(marca ?? "Sin Marca", modelo ?? "Sin Modelo", puertas);
+                    Console.WriteLine("\n¡Coche registrado con éxito en el sistema!");
+                }
+                else
+                {
+                    Console.WriteLine("\nError: Debe ingresar un número entero de puertas válido.");
+                }
+                break;
+
+            case "2":
+                if (miCoche == null)
+                {
+                    Console.WriteLine("\nError: Primero debe registrar un coche (Opción 1).");
+                    break;
+                }
+                Console.WriteLine();
+                miCoche.Arrancar();
+                break;
+
+            case "3":
+                if (miCoche == null)
+                {
+                    Console.WriteLine("\nError: Primero debe registrar un coche (Opción 1).");
+                    break;
+                }
+                miCoche.MostrarInformacion();
+                break;
+
+            case "4":
+                salirSubMenu = true;
+                continue;
+
+            default:
+                Console.WriteLine("\nOpción no válida. Intente de nuevo.");
+                break;
+        }
+
+        if (!salirSubMenu)
+        {
+            EsperarTecla();
+        }
+    }
 }
 
 static void EjecutarEjercicio4()
